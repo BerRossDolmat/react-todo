@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from'react-dom';
 import {Route, Router, IndexRoute, hashHistory} from 'react-router';
-
+import TodoApp from 'TodoApp';
 // load custom styles
 require('style!css!sass!applicationStyles');
 
 $('document').foundation();
 
 ReactDOM.render(
-  <p>Boilerplate3</p>,
+  <TodoApp/>,
   document.getElementById('app')
 );
