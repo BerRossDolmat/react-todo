@@ -1,7 +1,8 @@
 import React from 'react';
 
 let AddTodo = React.createClass({
-    handleSubmit() {
+    handleSubmit(e) {
+        e.preventDefault();
         let text = this.refs.newTodo.value;
         if (text.length > 0 && text != '') {
             this.props.addTodo(text);
