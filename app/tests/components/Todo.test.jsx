@@ -24,4 +24,7 @@ describe('Todo', () => {
       expect(spy).toHaveBeenCalledWith(199);
        done();
    });
+   it('should set createdAt on creating todo to be a number', () => {
+
+   });
 });
