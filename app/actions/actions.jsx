@@ -5,6 +5,14 @@ export let setSearchText = (searchText) => {
     };
 };
 
+export let addTodos = (todos) => {
+	console.log('in actions file', todos);
+	return {
+		type: 'ADD_TODOS',
+		todos
+	};
+};
+
 export let addTodo = (text) => {
 	return {
 		type: 'ADD_TODO',

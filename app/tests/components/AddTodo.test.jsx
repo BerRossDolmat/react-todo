@@ -4,29 +4,33 @@ import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import $ from 'jQuery';
 
-import AddTodo from 'AddTodo';
+import {AddTodo} from 'AddTodo';
 
 describe('AddTodo', () => {
     it('should exist', () => {
         expect(AddTodo).toExist();
     });
 
-    it('should call onSubmit with valid data', () => {
+    it('should dispatch addTodo action with valid text', () => {
         let spy = expect.createSpy();
         let todoText = 'Wag The Dog';
-        let addTodo = TestUtils.renderIntoDocument(<AddTodo addTodo={spy}/>);
+        let action = {
+          type: 'ADD_TODO',
+          text: 'Wag The Dog'
+        }
+        let addTodo = TestUtils.renderIntoDocument(<AddTodo dispatch={spy}/>);
         let $el = $(ReactDOM.findDOMNode(addTodo));
 
         addTodo.refs.newTodo.value = todoText;
         TestUtils.Simulate.submit($el.find('form')[0]);
 
-        expect(spy).toHaveBeenCalledWith(todoText);
+        expect(spy).toHaveBeenCalledWith(action);
     });
 
-    it('should never call onSubmit with empty data', () => {
+    it('should not dispatch addTodo with invalid text', () => {
         let spy = expect.createSpy();
         let todoText = '';
-        let addTodo = TestUtils.renderIntoDocument(<AddTodo addTodo={spy}/>);
+        let addTodo = TestUtils.renderIntoDocument(<AddTodo dispatch={spy}/>);
         let $el = $(ReactDOM.findDOMNode(addTodo));
 
         addTodo.refs.newTodo.value = todoText;
@@ -35,4 +39,3 @@ describe('AddTodo', () => {
         expect(spy).toNotHaveBeenCalled();
     });
 });
-

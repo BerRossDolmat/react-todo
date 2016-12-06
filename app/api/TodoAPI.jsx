@@ -20,15 +20,15 @@ module.exports = {
 	filterTodos(todos, showCompleted, searchText) {
 		let filteredTodos = todos;
 
-        // Filter by showCompleted
-        filteredTodos = filteredTodos.filter((todo) => {
-            return !todo.completed || showCompleted;
-        });
-        // Filter be searchText
+    // Filter by showCompleted
+    filteredTodos = filteredTodos.filter((todo) => {
+        return !todo.completed || showCompleted;
+    });
+    // Filter by searchText
 		filteredTodos = filteredTodos.filter((todo) => {
-			let text = todo.text.toLowerCase();
-			return searchText.length === 0 || text.indexOf(searchText) > -1;
-		});
+		let text = todo.text.toLowerCase();
+		return searchText.length === 0 || text.indexOf(searchText) > -1;
+	});
         // Sort todos with non-completed first
 		filteredTodos.sort((a, b) => {
 			if ( !a.completed && b.completed ) {
