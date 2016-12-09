@@ -14,8 +14,8 @@ store.subscribe(() => {
   console.log('New state', state);
   TodoAPI.setTodos(state.todos);
 });
+
 let initialTodos = TodoAPI.getTodos();
-console.log(initialTodos);
 store.dispatch(addTodos(initialTodos));
 
 // load custom styles

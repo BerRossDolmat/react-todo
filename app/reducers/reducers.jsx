@@ -24,13 +24,7 @@ export let todosReducer = (state = [], action) => {
     case 'ADD_TODO':
       return [
         ...state,
-        {
-          text: action.text,
-          id: uuid(),
-          completed: false,
-          createdAt: moment().unix(),
-          completedAt: undefined
-        }
+        action.todo
       ];
     case 'TOGGLE_TODO':
       return state.map((todo) => {
@@ -47,7 +41,6 @@ export let todosReducer = (state = [], action) => {
           }
       });
     case 'ADD_TODOS':
-    console.log('reducer', action.todos);
       return [
         ...state,
         ...action.todos
