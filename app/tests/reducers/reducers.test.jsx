@@ -4,6 +4,33 @@ let moment = require('moment');
 let reducers = require('reducers');
 
 describe('Reducers', () => {
+  describe('authReducer', () => {
+    it('should set uid with LOGIN action', () => {
+      let action = {
+        type: 'LOGIN',
+        uid: 115
+      };
+
+      let res = reducers.authReducer(df(''), df(action));
+
+      expect(res.uid).toEqual(action.uid);
+    });
+
+    it('should unset uid with LOGOUT action', () => {
+      const authData = {
+        uid: 123
+      };
+
+      let action = {
+        type: 'LOGOUT'
+      };
+
+      let res = reducers.authReducer(df(authData), df(action));
+
+      expect(res).toEqual({});
+    });
+  });
+
   describe('searchTextReducer', () => {
     it('should set searchText', () => {
       let action = {

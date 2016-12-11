@@ -4,14 +4,16 @@ import {hashHistory} from 'react-router';
 import {Provider} from 'react-redux';
 
 import firebase from 'app/firebase/index.js';
-import {startAddTodos} from 'actions';
+import {startAddTodos, login, logout} from 'actions';
 import router from 'app/router/index.jsx';
 let store = require('configureStore').configure();
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
+    store.dispatch(login(user.uid));
     hashHistory.push('/todos');
   } else {
+    store.dispatch(logout());
     hashHistory.push('/');
   }
 });

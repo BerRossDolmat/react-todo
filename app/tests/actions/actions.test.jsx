@@ -92,6 +92,25 @@ describe('Actions', () => {
     expect(res).toEqual(action);
   });
 
+  it('should generate LOGIN action on login', () => {
+    let action = {
+      type: 'LOGIN',
+      uid: 115
+    };
+
+    let res = actions.login(action.uid);
+    expect(res).toEqual(action);
+  });
+
+  it('should generate LOGOUT action on logout', () => {
+    let action = {
+      type: 'LOGOUT'
+    };
+
+    let res = actions.logout();
+    expect(res).toEqual(action);
+  });
+
   describe('Test with firebase todos', () => {
     let testTodoRef;
 

@@ -1,6 +1,19 @@
 let uuid = require('node-uuid');
 let moment = require('moment');
 
+export let authReducer = (state = {}, action) => {
+  switch (action.type) {
+      case 'LOGIN':
+        return {
+          uid: action.uid
+        }
+      case 'LOGOUT':
+        return {};
+      default:
+        return state;
+  };
+};
+
 export let searchTextReducer = (state = '', action) => {
   switch (action.type) {
     case 'SET_SEARCH_TEXT':
