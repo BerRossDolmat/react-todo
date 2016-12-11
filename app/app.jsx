@@ -4,19 +4,12 @@ import {Route, Router, IndexRoute, hashHistory} from 'react-router';
 import {Provider} from 'react-redux';
 import TodoApp from 'TodoApp';
 
-import {addTodos} from 'actions';
+import {addTodos, startAddTodos} from 'actions';
 
 let store = require('configureStore').configure();
 import TodoAPI from 'TodoAPI';
 
-store.subscribe(() => {
-  let state = store.getState();
-  console.log('New state', state);
-  TodoAPI.setTodos(state.todos);
-});
-
-let initialTodos = TodoAPI.getTodos();
-store.dispatch(addTodos(initialTodos));
+store.dispatch(startAddTodos());
 
 // load custom styles
 require('style!css!sass!applicationStyles');

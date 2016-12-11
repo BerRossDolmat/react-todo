@@ -15,6 +15,22 @@ export let addTodos = (todos) => {
 	};
 };
 
+export let startAddTodos = () => {
+	return (dispatch, getState) => {
+		return firebaseRef.child('todos').once('value').then((snapshot) => {
+			let objTodos = snapshot.val() || {};
+			let todos = [];
+			Object.keys(objTodos).forEach((todoId) => {
+				todos.push({
+					id: todoId,
+					...objTodos[todoId]
+				});
+			});
+			dispatch(addTodos(todos));
+		});
+	};
+};
+
 export let addTodo = (todo) => {
 	return {
 		type: 'ADD_TODO',
@@ -48,9 +64,25 @@ export let toggleShowCompleted = () => {
 	};
 };
 
-export let toggleTodo = (id) => {
+export let updateTodo = (id, updates) => {
 	return {
-		type: 'TOGGLE_TODO',
-		id
+		type: 'UPDATE_TODO',
+		id,
+		updates
 	};
+};
+
+export let startToggleTodo = (id, completed) => {
+	return (dispatch, getState) => {
+		let todoRef = firebaseRef.child(`todos/${id}`);
+		let updates = {
+			completed,
+			completedAt: completed ? moment().unix() : null
+		};
+
+		return todoRef.update(updates)
+			.then(() => {
+				dispatch(updateTodo(id, updates));
+			});
+	}
 };
