@@ -7,7 +7,7 @@ import {Provider} from 'react-redux';
 
 let configureStore = require('configureStore');
 import TodoList from 'TodoList';
-import TodoApp from 'TodoApp';
+import TodoApp, {TodoApp} from 'TodoApp';
 
 describe('TodoApp', () => {
     it('should exist', () => {
