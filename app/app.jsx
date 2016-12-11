@@ -11,15 +11,13 @@ let store = require('configureStore').configure();
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     store.dispatch(login(user.uid));
+    store.dispatch(startAddTodos());
     hashHistory.push('/todos');
   } else {
     store.dispatch(logout());
     hashHistory.push('/');
   }
 });
-
-
-store.dispatch(startAddTodos());
 
 // load custom styles
 require('style!css!sass!applicationStyles');
