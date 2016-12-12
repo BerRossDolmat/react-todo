@@ -74,6 +74,30 @@ describe('Reducers', () => {
       expect(res[0]).toEqual(action.todo);
     });
 
+    it('should wipe out all todos on LOGOUT', () => {
+
+      let todos = [{
+        id: 'abc123',
+        text: 'Something to do',
+        completed: false,
+        createdAt: 123123123
+      },
+      {
+        id: 'abc123',
+        text: 'Something to do',
+        completed: false,
+        createdAt: 123123123
+      }];
+
+      let action = {
+        type: 'LOGOUT',
+      };
+
+      let res = reducers.todosReducer(df(todos), df(action));
+
+      expect(res.length).toEqual(0);
+    });
+
     it('should update todo', () => {
       let updates = {
         completed: false,

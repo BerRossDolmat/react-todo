@@ -115,7 +115,6 @@ export let logout = () => {
 	};
 };
 
-
 export let startLogout = () => {
 	return (dispatch, getState) => {
 		return firebase.auth().signOut()
